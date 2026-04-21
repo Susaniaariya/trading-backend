@@ -18,7 +18,8 @@ const { userVerification } = require("./Middlewares/AuthMiddleware");
 
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
-const SECRET_KEY = "MY_SECRET_KEY";
+// This tells the app: "Check Render's environment first, otherwise use the string."
+const SECRET_KEY = process.env.SECRET_KEY || "MY_SECRET_KEY";
 
 const app = express();
 
