@@ -26,10 +26,10 @@ const app = express();
 app.use(
   cors({
     origin: [
-  "https://sangini-frontend-tau.vercel.app", 
-  "https://sangini-dashboard.vercel.app/"
-  
-    ],   
+      "https://sangini-frontend-tau.vercel.app",
+      "https://sangini-dashboard.vercel.app", // Removed the trailing slash
+      /\.vercel\.app$/, // ✅ This allows all your Vercel subdomains/previews
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
