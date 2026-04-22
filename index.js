@@ -102,12 +102,15 @@ app.get("/allHoldings", userVerification, async (req, res) => {
   res.json(allHoldings);
 });
 
-// Change this in your backend/index.js
+
+// ✅ CORRECTED: Now filters by the logged-in user's ID
 app.get("/allPositions", userVerification, async (req, res) => {
   try {
-    const allPositions = await PositionsModel.find({}); // Empty {} finds everything
+    // We use req.user._id which is provided by your userVerification middleware
+    const allPositions = await PositionsModel.find({ userId: req.user._id }); 
     res.json(allPositions);
   } catch (error) {
+    console.error("Positions fetch error:", error);
     res.status(500).json({ error: "Data fetch failed" });
   }
 });
